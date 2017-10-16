@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{margin:0;padding:0;}
+        #box{list-style: none;font-size: 12px;}
+        #box li{width: 95px;height:25px;line-height:25px;border: 1px #e5e5e5 solid ;float: left}
+        .grey{color: #666;background: #f6f6f6;}
+        .blue{color: #fff;background: #108ee9;}
+        .stop{font-size: 12px;border:#D0021B 1px solid;color:#D0021B;position:absolute;left:292px;top:30px;width: 95px;height:25px;line-height:25px;}
+    </style>
+    <script type="text/javascript">
+
+        var arr=[{"name":"待接单","status":"WAIT_ACCEPT","isShadowed":true},
+                {"name":"待发货","status":"WAIT_DELIVER","isShadowed":true,"isCurrentStatus":true},
+                {"name":"验货入库","status":"STOCK_IN"},
+                {"name":"已完成","status":"DELIVERED"}];
+         window.onload=function (){
+             var box=document.getElementById("box");
+             var lis=document.getElementsByTagName("li");
+            function doSomething(array,lis){
+
+                if(array.length==1){
+                    li[0].class="stop"//与中止相同
+                }else{
+                    for(var i=0;i<lis.length;i++){
+                        lis[i].innerHTML=array[i].name;
+                        if(array[i].isShadowed&&array[i].isCurrentStatus){
+                            lis[i].className="blue";
+                        }//两者都为true
+
+                    }
+                }
+            }
+             doSomething(arr,lis);
+        }
+
+
+    </script>
+</head>
+<body>
+<ul id="box">
+    <li class="grey">草稿</li>
+    <li class="blue">待审核</li>
+    <li>待复核</li>
+    <li>已核准</li>
+</ul>
+<div id="stop" class="stop">已终止</div>
+</body>
+</html>
